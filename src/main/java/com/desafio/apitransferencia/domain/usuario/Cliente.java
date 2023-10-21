@@ -20,18 +20,19 @@ public class Cliente {
     @Column(unique = true)
     private long id;
 
-    private int documentoCliente;
+    private String documentoCliente;
 
     private String nomeCliente;
 
-    @Column(unique = true)
-    private int numeroConta;
-
-    private BigDecimal saldoConta;
+    @OneToOne
+    @JoinColumn(name = "conta_id")
+    private Conta conta;
 
     public Cliente(ClienteDTO clienteNaoCadastrado) {
-        this.documentoCliente = clienteNaoCadastrado.documentoCLiente();
+        this.documentoCliente = clienteNaoCadastrado.documentoCliente();
         this.nomeCliente = clienteNaoCadastrado.nomeCliente();
-        this.saldoConta = clienteNaoCadastrado.saldoCliente();
+        this.conta.setSaldo(clienteNaoCadastrado.saldoCliente());
+
     }
+
 }
