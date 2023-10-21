@@ -5,12 +5,12 @@ import com.desafio.apitransferencia.dto.ClienteDTO;
 import com.desafio.apitransferencia.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @RestController("/cliente")
 public class ClienteController {
@@ -23,5 +23,11 @@ public class ClienteController {
     public ResponseEntity<Cliente> cadastraCliente(ClienteDTO cliente) {
         Cliente novoCliente = clienteService.cadastraCliente(cliente);
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Cliente>> buscarTodosClientes(){
+        List<Cliente> clientes = this.clienteService.buscarClientes();
+        return new ResponseEntity<>(clientes, HttpStatus.OK);
     }
 }

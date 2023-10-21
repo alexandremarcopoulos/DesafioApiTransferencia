@@ -3,11 +3,12 @@ package com.desafio.apitransferencia.service;
 import com.desafio.apitransferencia.domain.usuario.Cliente;
 import com.desafio.apitransferencia.dto.ClienteDTO;
 import com.desafio.apitransferencia.repository.ClienteRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class ClienteService {
@@ -37,5 +38,9 @@ public class ClienteService {
         Cliente novoCliente = new Cliente(clienteNaoCadastrado);
         this.salvaCliente(novoCliente);
         return novoCliente;
+    }
+
+    public List<Cliente> buscarClientes() {
+        return this.clienteRepositorio.findAll();
     }
 }
