@@ -1,6 +1,7 @@
 package com.desafio.apitransferencia.service;
 
 import com.desafio.apitransferencia.domain.usuario.Cliente;
+import com.desafio.apitransferencia.dto.ClienteDTO;
 import com.desafio.apitransferencia.repository.ClienteRepository;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,11 @@ public class ClienteService {
 
     public void salvaCliente(Cliente cliente){
         this.clienteRepositorio.save(cliente);
+    }
+
+    public Cliente cadastraCliente(ClienteDTO clienteNaoCadastrado) {
+        Cliente novoCliente = new Cliente(clienteNaoCadastrado);
+        this.salvaCliente(novoCliente);
+        return novoCliente;
     }
 }

@@ -1,4 +1,6 @@
 package com.desafio.apitransferencia.dto;
 
-public record ClienteDTO(String documento   ){
+import java.math.BigDecimal;
+
+public record ClienteDTO(String nomeCliente, BigDecimal saldoCliente, int documentoCLiente){
 }
