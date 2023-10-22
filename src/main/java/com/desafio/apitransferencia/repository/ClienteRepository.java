@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-    //Optional <Cliente> findClienteByNumeroConta(long numeroConta);
+    Optional <Cliente> findClienteByNumeroConta(long numeroConta);
 
     List<Cliente> findAll();
     @Query("SELECT MAX(c.contaCliente) FROM cliente c")

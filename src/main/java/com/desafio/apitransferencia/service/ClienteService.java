@@ -1,11 +1,8 @@
 package com.desafio.apitransferencia.service;
 
 import com.desafio.apitransferencia.domain.usuario.Cliente;
-import com.desafio.apitransferencia.domain.usuario.Conta;
 import com.desafio.apitransferencia.dto.ClienteDTO;
-import com.desafio.apitransferencia.dto.ContaDTO;
 import com.desafio.apitransferencia.repository.ClienteRepository;
-import com.desafio.apitransferencia.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +14,8 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepositorio;
 
-    @Autowired
-    private ContaRepository contaRepository;
-
-    public Conta buscaCLienteEspecifico(Long numeroConta) throws Exception {
-        return this.contaRepository.findClienteByNumeroConta(numeroConta).orElseThrow(() -> new Exception("Usuário não encontrado"));
+    public Cliente buscaCLienteEspecifico(Long numeroConta) throws Exception {
+        return this.clienteRepositorio.findClienteByNumeroConta(numeroConta).orElseThrow(() -> new Exception("Usuário não encontrado"));
     }
 
     public Cliente cadastraCliente(ClienteDTO clienteDTO) {
@@ -39,7 +33,7 @@ public class ClienteService {
         return novoCliente;
     }
 
-    private void salvaCliente(Cliente cliente) {
+    public void salvaCliente(Cliente cliente) {
         clienteRepositorio.save(cliente);
     }
     public List<Cliente> buscarClientes() {

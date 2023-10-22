@@ -22,34 +22,34 @@ public class TransacaoService {
     private TransacaoRepository transacaoRepository;
 
 
-    public void validaTransacao(Conta clienteTranferidor, BigDecimal valor) throws Exception {
+    public void validaTransacao(Cliente clienteTranferidor, BigDecimal valor) throws Exception {
         //Verifica se o cliente solicitante tem o saldo suficiente para realizar a transação
 
-        if (clienteTranferidor.getSaldo().compareTo(valor) < 0) {
+        if (clienteTranferidor.getSaldoCliente().compareTo(valor) < 0) {
             throw new Exception("Cliente não tem saldo para realizar a transação");
-        } else if (clienteTranferidor.getSaldo().compareTo(valor) > 1000) {
+        } else if (clienteTranferidor.getSaldoCliente().compareTo(valor) > 1000) {
             throw new Exception("Transação com valor superior a R$ 1000.00 Reais");
         }
 
     }
 
-//    public void criaTransacao(TransacaoDTO transacao) throws Exception {
-//        Conta clientePagador = this.clienteService.buscaCLienteEspecifico(transacao.numeroContaPagador());
-//        Conta clienteRecebedor = this.clienteService.buscaCLienteEspecifico(transacao.numeroContaRecebedor());
-//
-//        validaTransacao(clientePagador, transacao.valorTransacao());
-//
-//        Transacao transacaoCliente = new Transacao();
-//        transacaoCliente.setValorTransacao(transacao.valorTransacao());
-//        transacaoCliente.setClientePagador(clientePagador);
-//        transacaoCliente.setClienteRecebedor(clienteRecebedor);
-//        transacaoCliente.setDataHoraTransacao(LocalDateTime.now());
-//
-//        clientePagador.setSaldo(clientePagador.getSaldo().subtract(transacao.valorTransacao()));
-//        clienteRecebedor.setSaldo(clienteRecebedor.getSaldo().add(transacao.valorTransacao()));
-//
-//        this.transacaoRepository.save(transacaoCliente);
-//        this.clienteService.cadastraClienteEConta(clientePagador);
-//        this.clienteService.salvaConta(clienteRecebedor);
-//    }
+    public void criaTransacao(TransacaoDTO transacao) throws Exception {
+        Cliente clientePagador = this.clienteService.buscaCLienteEspecifico(transacao.numeroContaPagador());
+        Cliente clienteRecebedor = this.clienteService.buscaCLienteEspecifico(transacao.numeroContaRecebedor());
+
+        validaTransacao(clientePagador, transacao.valorTransacao());
+
+        Transacao transacaoCliente = new Transacao();
+        transacaoCliente.setValorTransacao(transacao.valorTransacao());
+        transacaoCliente.setClientePagador(clientePagador);
+        transacaoCliente.setClienteRecebedor(clienteRecebedor);
+        transacaoCliente.setDataHoraTransacao(LocalDateTime.now());
+
+        clientePagador.setSaldoCliente(clientePagador.getSaldoCliente().subtract(transacao.valorTransacao()));
+        clienteRecebedor.setSaldoCliente(clienteRecebedor.getSaldoCliente().add(transacao.valorTransacao()));
+
+        this.transacaoRepository.save(transacaoCliente);
+        this.clienteService.salvaCliente(clientePagador);
+        this.clienteService.salvaCliente(clienteRecebedor);
+    }
 }

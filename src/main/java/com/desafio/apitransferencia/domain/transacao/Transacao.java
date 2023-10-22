@@ -1,7 +1,6 @@
 package com.desafio.apitransferencia.domain.transacao;
 
 import com.desafio.apitransferencia.domain.usuario.Cliente;
-import com.desafio.apitransferencia.domain.usuario.Conta;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -23,11 +22,11 @@ public class Transacao {
 
     @ManyToOne
     @JoinColumn(name = "cliente_pagador")
-    private Conta clientePagador;
+    private Cliente clientePagador;
 
     @ManyToOne
     @JoinColumn(name = "cliente_recebedor")
-    private Conta clienteRecebedor;
+    private Cliente clienteRecebedor;
 
     private BigDecimal valorTransacao;
 
