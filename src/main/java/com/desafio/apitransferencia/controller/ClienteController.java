@@ -4,6 +4,8 @@ import com.desafio.apitransferencia.domain.usuario.Cliente;
 import com.desafio.apitransferencia.dto.ClienteDTO;
 import com.desafio.apitransferencia.repository.ClienteRepository;
 import com.desafio.apitransferencia.service.ClienteService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import java.util.List;
 //metodos para a chamada da rota HTTP controladora /cliente
 @RestController
 @RequestMapping("/cliente")
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClienteController {
 
     /*
