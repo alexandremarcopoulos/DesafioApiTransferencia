@@ -1,10 +1,8 @@
 package com.desafio.apitransferencia.controller;
 
 import com.desafio.apitransferencia.domain.usuario.Cliente;
-import com.desafio.apitransferencia.domain.usuario.Conta;
 import com.desafio.apitransferencia.dto.ClienteDTO;
 import com.desafio.apitransferencia.repository.ClienteRepository;
-import com.desafio.apitransferencia.repository.ContaRepository;
 import com.desafio.apitransferencia.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,11 +19,7 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @Autowired
-    private ContaRepository contaRepository;
-
-    @Autowired
     private ClienteRepository clienteRepository;
-    private Conta conta;
 
     @PostMapping
     public ResponseEntity<Cliente> cadastraClienteEConta(@RequestBody ClienteDTO clienteDTO) {

@@ -2,9 +2,7 @@ package com.desafio.apitransferencia.service;
 
 import com.desafio.apitransferencia.domain.transacao.Transacao;
 import com.desafio.apitransferencia.domain.usuario.Cliente;
-import com.desafio.apitransferencia.domain.usuario.Conta;
 import com.desafio.apitransferencia.dto.TransacaoDTO;
-import com.desafio.apitransferencia.repository.ContaRepository;
 import com.desafio.apitransferencia.repository.TransacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
