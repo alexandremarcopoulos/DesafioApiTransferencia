@@ -24,15 +24,16 @@ public class Cliente {
 
     private String nomeCliente;
 
-    @OneToOne
-    @JoinColumn(name = "conta_id")
-    private Conta conta;
+    @Column(unique = true)
+    private long contaCliente;
 
-    public Cliente(ClienteDTO clienteNaoCadastrado) {
+    private BigDecimal saldoCliente;
+
+    public Cliente(ClienteDTO clienteNaoCadastrado,Long ultimoNumeroConta) {
         this.documentoCliente = clienteNaoCadastrado.documentoCliente();
         this.nomeCliente = clienteNaoCadastrado.nomeCliente();
-        this.conta.setSaldo(clienteNaoCadastrado.saldoCliente());
-
+        this.saldoCliente = clienteNaoCadastrado.saldoCliente();
+        this.contaCliente = ultimoNumeroConta;
     }
 
 }

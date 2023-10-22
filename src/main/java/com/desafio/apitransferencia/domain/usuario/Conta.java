@@ -1,5 +1,6 @@
 package com.desafio.apitransferencia.domain.usuario;
 
+import com.desafio.apitransferencia.dto.ContaDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,11 +18,14 @@ public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true)
-    private long numeroConta;
+    private Long numeroConta;
 
-    @OneToOne(mappedBy = "conta")
-    private Cliente cliente;
+    //@OneToOne(mappedBy = "conta")
+    //private Cliente cliente;
 
     private BigDecimal saldo;
 
+    public Conta(ContaDTO contaNaoCadastrada) {
+
+    }
 }
