@@ -31,7 +31,7 @@ public class TransacaoService {
 
     }
 
-    public void criaTransacao(TransacaoDTO transacao) throws Exception {
+    public Transacao criaTransacao(TransacaoDTO transacao) throws Exception {
         Cliente clientePagador = this.clienteService.buscaCLienteEspecifico(transacao.numeroContaPagador());
         Cliente clienteRecebedor = this.clienteService.buscaCLienteEspecifico(transacao.numeroContaRecebedor());
 
@@ -49,5 +49,7 @@ public class TransacaoService {
         this.transacaoRepository.save(transacaoCliente);
         this.clienteService.salvaCliente(clientePagador);
         this.clienteService.salvaCliente(clienteRecebedor);
+
+        return transacaoCliente;
     }
 }

@@ -18,6 +18,7 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
+
     @PostMapping
     public ResponseEntity<Cliente> cadastraClienteEConta(@RequestBody ClienteDTO clienteDTO) {
         Cliente novoCliente = clienteService.cadastraCliente(clienteDTO);

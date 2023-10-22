@@ -14,8 +14,8 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepositorio;
 
-    public Cliente buscaCLienteEspecifico(Long numeroConta) throws Exception {
-        return this.clienteRepositorio.findClienteByNumeroConta(numeroConta).orElseThrow(() -> new Exception("Usuário não encontrado"));
+    public Cliente buscaCLienteEspecifico(Long contaCliente) throws Exception {
+        return this.clienteRepositorio.findClienteByContaCliente(contaCliente).orElseThrow(() -> new Exception("Usuário não encontrado"));
     }
 
     public Cliente cadastraCliente(ClienteDTO clienteDTO) {
