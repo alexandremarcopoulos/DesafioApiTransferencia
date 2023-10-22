@@ -9,20 +9,27 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class TransacaoService {
-
+    /*
+    Chamada da classe para poder realizar a implementação dos metodos desta classe(TransacaoService)
+    com os metodos da classe ClienteService e TransacaoReposytory
+    */
     @Autowired
     private ClienteService clienteService;
 
     @Autowired
     private TransacaoRepository transacaoRepository;
 
+    //Metodo para realizar a busca de todas as transacoes de um cliente especifico
+    public List<Transacao> buscaTransacaoCliente(long numeroContaPagador) throws Exception {
+        return this.transacaoRepository.findTrasacaoByContaCliente(numeroContaPagador).orElseThrow(() -> new Exception("Usuário não encontrado"));
+    }
 
+    //metodo para validar a
     public void validaTransacao(Cliente clienteTranferidor, BigDecimal valor) throws Exception {
-        //Verifica se o cliente solicitante tem o saldo suficiente para realizar a transação
-
         if (clienteTranferidor.getSaldoCliente().compareTo(valor) < 0) {
             throw new Exception("Cliente não tem saldo para realizar a transação");
         } else if (clienteTranferidor.getSaldoCliente().compareTo(valor) > 1000) {
@@ -39,6 +46,7 @@ public class TransacaoService {
 
         Transacao transacaoCliente = new Transacao();
         transacaoCliente.setValorTransacao(transacao.valorTransacao());
+        transacaoCliente.setContaCliente(clientePagador.getContaCliente());
         transacaoCliente.setClientePagador(clientePagador);
         transacaoCliente.setClienteRecebedor(clienteRecebedor);
         transacaoCliente.setDataHoraTransacao(LocalDateTime.now());
