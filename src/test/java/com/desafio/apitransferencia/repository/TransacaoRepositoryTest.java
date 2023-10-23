@@ -37,7 +37,7 @@ public class TransacaoRepositoryTest {
         transacaoRepository.saveAll(List.of(transacao1, transacao2));
 
         // Metodo de repositorio para encontrar as transações relacionadas ao cliente
-        Optional<List<Transacao>> foundTransacoes = transacaoRepository.findTrasacaoByContaCliente(1001L);
+        Optional<List<Transacao>> foundTransacoes = transacaoRepository.findTrasacaoByContaClienteOrderByDataHoraTransacaoDesc(1001L);
 
         // Transações foram encontradas corretamente
         assertTrue(foundTransacoes.isPresent());

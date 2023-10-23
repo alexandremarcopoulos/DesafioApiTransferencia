@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
@@ -37,7 +36,6 @@ public class TransacaoControllerTest {
     @Test
     public void testRealizaTransacao() throws Exception {
         TransacaoDTO transacaoDTO = new TransacaoDTO(new BigDecimal(200),1000L,1001L);
-        // Defina aqui os campos necessários no transacaoDTO.
 
         Transacao transacao = new Transacao();
         when(transacaoService.criaTransacao(transacaoDTO)).thenReturn(transacao);
@@ -51,10 +49,10 @@ public class TransacaoControllerTest {
     @Test
     public void testBuscaTransacaoCliente() throws Exception {
         Transacao transacao = new Transacao();
-        transacao.setContaCliente(1000L); // Defina a conta do cliente desejada.
+        transacao.setContaCliente(1000L); // Monta a conta do cliente desejada.
 
         List<Transacao> transacoes = new ArrayList<>();
-        // Adicione transações à lista transacoes conforme necessário.
+        // Adicione transações a lista transacoes conforme necessario.
 
         when(transacaoService.buscaTransacaoCliente(1000L)).thenReturn(transacoes);
 

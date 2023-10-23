@@ -78,7 +78,7 @@ public class transacaoServiceTest {
         long numeroContaPagador = 1001L;
         Transacao transacao = new Transacao();
         transacao.setContaCliente(numeroContaPagador);
-        when(transacaoRepository.findTrasacaoByContaCliente(numeroContaPagador)).thenReturn(Optional.of(List.of(transacao)));
+        when(transacaoRepository.findTrasacaoByContaClienteOrderByDataHoraTransacaoDesc(numeroContaPagador)).thenReturn(Optional.of(List.of(transacao)));
 
         List<Transacao> result = transacaoService.buscaTransacaoCliente(numeroContaPagador);
         assertNotNull(result);
