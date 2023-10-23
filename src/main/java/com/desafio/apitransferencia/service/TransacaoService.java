@@ -28,17 +28,24 @@ public class TransacaoService {
         return this.transacaoRepository.findTrasacaoByContaClienteOrderByDataHoraTransacaoDesc(numeroContaPagador).orElseThrow(() -> new Exception("Usuário não encontrado"));
     }
 
-    //metodo para validar a
+    /*metodo para validar a transacao que esta sendo executada, verificando saldo de conta e limite a ser
+    transferido
+     */
     public void validaTransacao(Cliente clienteTranferidor, BigDecimal valor) throws Exception {
+
         if (clienteTranferidor.getSaldoCliente().compareTo(valor) < 0) {
             throw new Exception("Cliente não tem saldo para realizar a transação");
         } else if (clienteTranferidor.getSaldoCliente().compareTo(valor) > 1000) {
             throw new Exception("Transação com valor superior a R$ 1000.00 Reais");
         }
-
     }
 
+    /*
+    Classe criada para realizar uma transacao utilizando o contrato TransacaoDTO onde é passado o valor
+    dessa transacao, o cliente que esta efetuando o pagamento e o cliente que esta efetuando o recebimento
+    */
     public Transacao criaTransacao(TransacaoDTO transacao) throws Exception {
+
         Cliente clientePagador = this.clienteService.buscaCLienteEspecifico(transacao.numeroContaPagador());
         Cliente clienteRecebedor = this.clienteService.buscaCLienteEspecifico(transacao.numeroContaRecebedor());
 
