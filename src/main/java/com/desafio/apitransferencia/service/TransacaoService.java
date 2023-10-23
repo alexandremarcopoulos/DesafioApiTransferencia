@@ -25,7 +25,7 @@ public class TransacaoService {
 
     //Metodo para realizar a busca de todas as transacoes de um cliente especifico
     public List<Transacao> buscaTransacaoCliente(long numeroContaPagador) throws Exception {
-        return this.transacaoRepository.findTrasacaoByContaCliente(numeroContaPagador).orElseThrow(() -> new Exception("Usuário não encontrado"));
+        return this.transacaoRepository.findTrasacaoByContaClienteOrderByDataHoraTransacaoDesc(numeroContaPagador).orElseThrow(() -> new Exception("Usuário não encontrado"));
     }
 
     //metodo para validar a

@@ -53,4 +53,7 @@ public class Cliente {
         this.contaCliente = ultimoNumeroConta;
     }
 
+    //Construtor criado para realizar os testes integrados
+    public Cliente(long contaCliente) {
+    }
 }

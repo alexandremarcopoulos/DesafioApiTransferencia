@@ -17,5 +17,5 @@ public interface TransacaoRepository extends JpaRepository<Transacao, Long> {
     Metodo para realizar a busca no banco de transacoes e trazer todas as transacoes realizadas por um
     cliente.
     */
-    Optional <List<Transacao>> findTrasacaoByContaCliente(long contaCliente);
+    Optional <List<Transacao>> findTrasacaoByContaClienteOrderByDataHoraTransacaoDesc(long contaCliente);
 }
